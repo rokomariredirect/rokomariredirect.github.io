@@ -1,0 +1,13 @@
+# 1. Direct 404 handler fallback
+ErrorDocument 404 https://rokomaripromocode.github.io/
+
+# 2. Rewrite rule for any unmatched request
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    # If the file or directory does not physically exist
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Redirect immediately to the GitHub Pages homepage
+    RewriteRule ^.*$ https://rokomaripromocode.github.io/ [R=301,L]
+</IfModule>
